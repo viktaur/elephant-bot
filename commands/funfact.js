@@ -8,12 +8,12 @@ const funny = [
 	"Tom Scott learnt to fly a jetpack before learning how to ride a bike.",
 	"German chocolate cake was invented in Texas",
 	"Profdev is actually a good module",
-	"Adolf Hitler is the most famous painter in world history",
 	"Shoes that were specific to left and right were not made until the American Civil War",
 	"The Turks called the turkey an American bird",
 	"Amazon.com was originally called a cadabra",
-]
-
+	"I wish there was unihomes without m :heart_eyes:",
+	"Am I supposed to say something funny?"
+];
 
 module.exports = {
 	data: new SlashCommandBuilder()
