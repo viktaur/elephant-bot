@@ -1,19 +1,21 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
-var dignity;
-var socialCreditScore;
+var dignity = 0;
+// var socialCreditScore;
 
-let userVariables = {dignity, socialCreditScore};
+// let userVariables = {dignity, socialCreditScore};
 
-// To access a variable (e.g. dignity)
-let myValue = userVariables[dignity];
+// // To access a variable (e.g. dignity)
+// let myValue = userVariables[dignity];
 
-// To set the value of a variable (e.g. set dignity to 15)
-uservariables[dignity] = 15;
+// // To set the value of a variable (e.g. set dignity to 15)
+// uservariables[dignity] = 15;
 
-const people = new Map();
+// const people = new Map();
 
-people.set(Guild)
+// people.set(Guild)
+
+var socialCreditScore = 800;
 
 module.exports = {
 	data: new SlashCommandBuilder()
