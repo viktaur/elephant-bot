@@ -1,6 +1,4 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-// const { guildId } = require('../config.json')
-// const { client } = require('../index.js')
 
 var socialCreditScore = new Map();
 

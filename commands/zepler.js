@@ -1,3 +1,7 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+
+// CAN ONLY BE EXECUTED IN ZEPLER
+
 // var exec = require('child_process').exec;
 // function execute(command, callback){
 //     exec(command, function(error, stdout, stderr){ callback(stdout); });
@@ -6,18 +10,25 @@
 const { promisify } = require('util');
 const exec = promisify(require('child_process').exec);
 
-module.exports.getGitUser = async function getComputersOn () {
-    // Exec output contains both stderr and stdout outputs
+function getZeplerStatus () {
     var rawOutput = await exec('arp -a');
     // rawOutput: rawOutput.stdout.trim() // I'll leave it commented since I don't know what this does
 
     var outputArray = rawOutput.split("\n");
     
-    console.log("The number of computers that are on right now is", outputArray);
-    if (outputArray > 50) {
-        console.log("ZEPLER IS CROWDED");
+    if (outputArray.length > 50) {
+       return ("The number of computers that are on right now is", outputArray.length, "\nZEPLER IS CROWDED");
     } else {
-        console.log("ZEPLER IS NOT CROWDED");
+       return ("The number of computers that are on right now is", outputArray.length, "\nZEPLER IS NOT CROWDED");
     }
 };
+
+module.exports = {
+    data: new SlashCommandBuilder
+        .setName("zepler")
+        .setDescription("Returns the number of computers logged in at Zepler and whether it's crowded or not"),
+    async execute(interaction) {
+        await interaction.reply(getZeplerStatus());
+    }
+}
 
