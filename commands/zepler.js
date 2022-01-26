@@ -1,26 +1,7 @@
-// this is definitely for linux, not sure for windows.
-var exec = require('child_process').exec;
-function execute(command, callback){
-    exec(command, function(error, stdout, stderr){ callback(stdout); });
-};
-
-var os = require('os');
-
-var isWin = os.platform() === "win32";
-// var isLin = os.platform() === "linux";
-
-// For now it will only work for Linux
-
-// if (isWin) {
-//     // execute for windows
-//     execute("arp a");
-// } else {
-//     // execute for linux
-//     execute("");
-// }
-
-execute("arp -a");
-
+// var exec = require('child_process').exec;
+// function execute(command, callback){
+//     exec(command, function(error, stdout, stderr){ callback(stdout); });
+// };
 
 const { promisify } = require('util');
 const exec = promisify(require('child_process').exec);
