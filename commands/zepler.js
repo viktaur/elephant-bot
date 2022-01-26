@@ -1,17 +1,17 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-
 // CAN ONLY BE EXECUTED IN ZEPLER
 
-// var exec = require('child_process').exec;
-// function execute(command, callback){
-//     exec(command, function(error, stdout, stderr){ callback(stdout); });
-// };
+const { SlashCommandBuilder } = require('@discordjs/builders');
+
+var exec = require('child_process').exec;
+function execute(command, callback){
+    exec(command, function(error, stdout, stderr){ callback(stdout); });
+};
 
 const { promisify } = require('util');
 const exec = promisify(require('child_process').exec);
 
 function getZeplerStatus () {
-    var rawOutput = await exec('arp -a');
+    var rawOutput = await execute('arp -a');
     // rawOutput: rawOutput.stdout.trim() // I'll leave it commented since I don't know what this does
 
     var outputArray = rawOutput.split("\n");
