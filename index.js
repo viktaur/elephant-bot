@@ -25,6 +25,8 @@ client.on('interactionCreate', async interaction => {
 
 	if (!command) return;
 
+	// const args = message.content.slice(prefix.length).trim().split(' ');
+
 	try {
 		await command.execute(interaction);
 	} catch (error) {

@@ -16,10 +16,10 @@ function getZeplerStatus () {
 
     var outputArray = rawOutput.split("\n");
     
-    if (outputArray.length > 50) {
-       return ("The number of computers that are on right now is " + outputArray.length + "\nZEPLER IS CROWDED");
+    if ((outputArray.length - 1) > 20) {
+       return ("The number of computers that are on right now is " + (outputArray.length - 1) + "\nZEPLER IS CROWDED");
     } else {
-       return ("The number of computers that are on right now is " + outputArray.length + "\nZEPLER IS NOT CROWDED");
+       return ("The number of computers that are on right now is " + (outputArray.length - 1) + "\nZEPLER IS NOT CROWDED");
     }
 };
 
