@@ -1,16 +1,10 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 outputMessage = function(firstName, middleName, lastName) {
-    var senders = ["Karen Smith", "John Wick"];
 
-    var a = Math.random();
-    var randInt;
+    var senders = ["Karen Smith", "John Wick", "Harry Potter", "Harrison Ford", "Peter Parker", "Marcus Aurelius", "Your Mom"];
 
-    if (a < 0.5) {
-        randInt = 0;
-    } else {
-        randInt = 1;
-    }
+    var i = Math.floor((Math.random() * senders.length));
 
     return (`⠀
         Dear ${firstName},
@@ -19,7 +13,7 @@ outputMessage = function(firstName, middleName, lastName) {
         I hope this does not disturb your last name, which is ${lastName}.
 
         Kind regards,
-        ${senders[randInt]}.
+        ${senders[i]}.
     `);
 }
 
