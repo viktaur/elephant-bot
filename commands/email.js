@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 outputMessage = function(firstName, middleName, lastName) {
 
-    var senders = ["Karen Smith", "John Wick", "Harry Potter", "Harrison Ford", "Peter Parker", "Marcus Aurelius", "Your Mom"];
+    var senders = ["Karen Smith", "John Wick", "Harry Potter", "Harrison Ford", "Peter Parker", "Marcus Aurelius", "Your Mom", "Napoleon", "George Washington", "William Shakespeare", "Albert Einstein", "Luke Skywalker", "Adam Smith", "Elon Musk"];
 
     var i = Math.floor((Math.random() * senders.length));
 
