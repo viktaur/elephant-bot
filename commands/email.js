@@ -12,7 +12,7 @@ outputMessage = function(firstName, middleName, lastName) {
         randInt = 1;
     }
 
-    return (`\n
+    return (`⠀
         Dear ${firstName},
 
         As I have mentioned before, you have been put on isolation because your middle name is ${middleName}.
