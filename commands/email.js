@@ -1,34 +1,44 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
-var firstName = args[1];
-var middleName = args[2];
-var lastName = args[3];
-var senders = ["Karen Smith", "John Wick"];
+outputMessage = function(firstName, middleName, lastName) {
+    var senders = ["Karen Smith", "John Wick"];
 
-var a = Math.random();
-var randInt;
+    var a = Math.random();
+    var randInt;
 
-if (a < 0.5) {
-    randInt = 0;
-} else {
-    randInt = 1;
+    if (a < 0.5) {
+        randInt = 0;
+    } else {
+        randInt = 1;
+    }
+
+    return (`\n
+        Dear ${firstName},
+
+        As I have mentioned before, you have been put on isolation because your middle name is ${middleName}.
+        I hope this does not disturb your last name, which is ${lastName}.
+
+        Kind regards,
+        ${senders[randInt]}.
+    `);
 }
-
-var outputMessage = `
-    Dear ${firstName},
-
-    As I have mentioned before, you have been put on isolation because your middle name is ${middleName}.
-    I hope this does not disturb your last name, which is ${lastName}.
-
-    Kind regards,
-    ${senders[randInt]}.
-`;
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('email')
-        .setDescription('Usage: (firstName middleName lastname)'),
+        .setDescription('Usage: (firstName middleName lastName)')
+        .addStringOption(option =>
+            option.setName('input')
+                .setDescription('The input to echo back')
+                .setRequired(true)),
     async execute(interaction) {
-        await interaction.reply(outputMessage);
+        let option = interaction.options.get("input");
+        var args = option.value.split(" ");
+
+        var firstName = args[0];
+        var middleName = args[1];
+        var lastName = args[2];
+
+        await interaction.reply(outputMessage(firstName, middleName, lastName));
     }
 }
