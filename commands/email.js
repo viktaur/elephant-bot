@@ -19,12 +19,12 @@ outputMessage = function(firstName, middleName, lastName) {
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('email')
+    .setName('email')
+    .setDescription('Writes an email about youir names')
+    .addStringOption(option =>
+        option.setName('input')
         .setDescription('Usage: (firstName middleName lastName)')
-        .addStringOption(option =>
-            option.setName('input')
-                .setDescription('The input to echo back')
-                .setRequired(true)),
+        .setRequired(true)),
     async execute(interaction) {
         let option = interaction.options.get("input");
         var args = option.value.split(" ");
