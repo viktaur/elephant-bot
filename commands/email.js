@@ -23,7 +23,7 @@ module.exports = {
     .setDescription('Writes an email about youir names')
     .addStringOption(option =>
         option.setName('input')
-        .setDescription('Usage: (firstName middleName lastName)')
+        .setDescription('Usage: firstName middleName lastName')
         .setRequired(true)),
     async execute(interaction) {
         let option = interaction.options.get("input");
