@@ -5,6 +5,7 @@ Elephant elephant = new Elephant();
 - `echo`
 - `email`
 - `funfact`
+- `lordify`
 - `ping`
 - `server`
 - `sum`
