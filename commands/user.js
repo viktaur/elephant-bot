@@ -1,18 +1,18 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
-// var socialCreditScore = new Map();
-
-// guild.members.forEach(member => () => {
-//    var indSCS = socialCreditScore.set(member.user.username, 800);
-// });
+const map1 = new Map();
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('user')
 		.setDescription('Replies with user info!'),
 	async execute(interaction) {
-		// await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}\nYour dignity: ${dignity}\nYour social credit score: ${socialCreditScore}\nSince you ask so much your social credit will be reduced *(-20 social credit score)*.`);
-        // socialCreditScore.set(member.user.username, indSCS - 20);
-		await interaction.reply(`hello ${interaction.user.tag}`)
+		if (map1.get(interaction.user.tag) == null) {
+			map1.set(interaction.user.tag, 300);
+		} else {
+			map1.set(interaction.user.tag, map1.get(interaction.user.tag) - 20);
+		}
+
+		await interaction.reply(`hello ${interaction.user.tag}! Your current social credit score is ${map1.get(interaction.user.tag)}`);
 	},
-};
+};	
