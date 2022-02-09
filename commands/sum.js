@@ -2,12 +2,12 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('sum')
-		.setDescription('Adds two integers.')
-		.addStringOption(option =>
-			option.setName('input')
-			.setDescription('Usage: firstInt secondInt')
-			.setRequired(true)),
+	.setName('sum')
+	.setDescription('Adds two integers.')
+	.addStringOption(option =>
+		option.setName('input')
+		.setDescription('Usage: firstInt secondInt')
+		.setRequired(true)),
 	async execute(interaction) {
 		let option = interaction.options.get("input");
 		var args = option.value.split(" ");
