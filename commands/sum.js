@@ -6,7 +6,7 @@ module.exports = {
 		.setDescription('Adds two integers.')
 		.addStringOption(option =>
 			option.setName('input')
-			.setDescription('Usage: name land')
+			.setDescription('Usage: firstInt secondInt')
 			.setRequired(true)),
 	async execute(interaction) {
 		let option = interaction.options.get("input");
