@@ -1,6 +1,8 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
+// const Sequelize = require('sequelize');
+const { tagsSync } = require('./commands/add.js');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
@@ -16,6 +18,7 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log(`Ready! Logged in as ${client.user.tag}`);
+	tagsSync();
 });
 
 client.on('interactionCreate', async interaction => {
