@@ -43,24 +43,29 @@ module.exports = {
         const tagAddress = interaction.options.getString("address");
 
         try {
-            const tag = await Tags.create({
-                userId: interaction.user.id,
-                address: tagAddress
-            })
-        
-            if (isValid(tag.address)) {
-                await interaction.reply(`Successfully registered ${tag.address} for <@${tag.userId}>`);
-            } else {
-                await interaction.reply("Not a valid address") // Fix this cause the address is still being registered.
-            }
+            if (isValid(tagAddress)) {
+                // sequelize.query(`UPDATE tags SET address=${tagAddress} WHERE userId=${interaction.user.id}`);
+                const affectedRows = await Tags.update({ address: tagAddress}, { where: { userId: interaction.user.id }});
 
+                if (affectedRows == 0) {
+                    const tag = await Tags.create({
+                        userId: interaction.user.id,
+                        address: tagAddress
+                    });
+                    await interaction.reply(`Successfully registered the address **${tag.address}** for <@${tag.userId}>`);
+                } else {
+                    await interaction.reply(`Successfully updated the address **${tagAddress}** for <@${interaction.user.id}>`)
+                }
+            } else {
+                await interaction.reply("Not a valid address, please try again") // Fix this cause the address is still being registered.
+            }
 
         } catch (error) {
             console.log(error);
             if (error.name === 'SequelizeUniqueConstraintError') {
                 await interaction.reply('That tag already exists');
             }
-            await interaction.reply('Something went wrong with adding the address.');
+            await interaction.reply('Something went wrong, please report this incident');
         }
     }
 }
