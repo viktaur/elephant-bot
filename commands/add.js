@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const Sequelize = require('sequelize');
+const Web3 = require("web3")
 
 const sequelize = new Sequelize('database', 'user', 'password', {
     host: 'localhost',
@@ -10,12 +11,18 @@ const sequelize = new Sequelize('database', 'user', 'password', {
 });
 
 const Tags = sequelize.define('tags', {
-    username: {
+    userId: {
         type: Sequelize.STRING,
         // unique: true,
     },
-    address: Sequelize.STRING,
+    address: {
+        type: Sequelize.STRING
+    }
 });
+
+function isValid(address) {
+    return Web3.utils.isAddress(address);
+}
 
 // export { Tags };
 
@@ -37,17 +44,22 @@ module.exports = {
 
         try {
             const tag = await Tags.create({
-                username: interaction.user.username,
+                userId: interaction.user.id,
                 address: tagAddress
             })
+        
+            if (isValid(tag.address)) {
+                await interaction.reply(`Successfully registered ${tag.address} for <@${tag.userId}>`);
+            } else {
+                await interaction.reply("Not a valid address") // Fix this cause the address is still being registered.
+            }
 
-        await interaction.reply(address);
 
         } catch (error) {
-            // if (error.name === 'SequelizeUniqueConstraintError') {
-            //     await interaction.reply('That tag already exists');
-            // }
             console.log(error);
+            if (error.name === 'SequelizeUniqueConstraintError') {
+                await interaction.reply('That tag already exists');
+            }
             await interaction.reply('Something went wrong with adding the address.');
         }
     }
